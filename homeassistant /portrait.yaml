@@ -1,0 +1,370 @@
+views:
+
+  - icon: mdi:cellphone-text
+    type: panel
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.home
+          - type: glance
+            entities: 
+              - sensor.bing_xiang_wen_du
+              - sensor.wo_shi_wen_du
+              - sensor.wo_shi_shi_du
+              - sensor.lu_tai_wen_du
+              - sensor.lu_tai_shi_du
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: scene.quan_wu_guan_deng
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.quan_wu_guan_deng
+                show_name: false
+              - type: button
+                entity: light.yi_lou
+                show_name: false
+              - type: button
+                entity: light.er_lou
+                show_name: false
+              - type: button
+                entity: light.san_lou
+                show_name: false
+              - type: button
+                entity: light.si_lou
+                show_name: false
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: light.deng_long
+                show_name: false
+              - type: button
+                entity: light.can_ting
+                show_name: false
+              - type: button
+                entity: light.chuang_tou_deng
+                show_name: false
+              - type: button
+                entity: light.sheng_dan_shu
+                show_name: false
+              - type: button
+                entity: light.liu_guang_yi_cai
+                show_name: false
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: automation.re_shui_qi_ding_shi
+                show_name: false
+              - type: button
+                entity: switch.re_shui_qi
+                show_name: false
+              - type: button
+                entity: switch.da_yin_ji
+                show_name: false
+              - type: button
+                entity: switch.3d_da_yin_ji
+                show_name: false
+              - type: button
+                entity: switch.pc
+                show_name: false
+          - type: entity-filter
+            entities:
+              - binary_sensor.men_lang_ti_gan
+            state_filter:
+              - "on"
+            card:
+              type: picture
+              image: http://cctv1:8080/?action=stream
+              tap_action:
+                action: call-service
+                service: light.toggle
+                service_data:
+                  entity_id: light.men_lang
+              hold_action: none
+              double_tap_action: none
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - switch.3d_da_yin_ji
+            state_filter:
+              - "on"
+            card:
+              type: picture
+              image: http://cctv3:8080/?action=stream
+              tap_action:
+                action: call-service
+                service: light.toggle
+                service_data:
+                  entity_id: light.gong_zuo_shi
+              hold_action: none
+              double_tap_action: none
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - entity: sensor.bing_xiang_wen_shi_du_ji_dian_liang
+              - entity: sensor.hou_chu_men_ci_dian_liang
+              - entity: sensor.chu_fang_men_ci_dian_liang
+              - entity: sensor.chu_fang_ti_gan_dian_liang
+              - entity: sensor.men_lang_men_ci_dian_liang
+              - entity: sensor.men_lang_ti_gan_dian_liang
+              - entity: sensor.jia_de_man_du_men_ci_dian_liang
+              - entity: sensor.wei_sheng_jian_men_ci_dian_liang
+              - entity: sensor.wei_sheng_jian_ti_gan_dian_liang
+              - entity: sensor.can_ting_men_ci_dian_liang
+              - entity: sensor.can_ting_ti_gan_dian_liang
+              - entity: sensor.wo_shi_ti_gan_dian_liang
+              - entity: sensor.wo_shi_wen_shi_du_ji_dian_liang
+              - entity: sensor.yang_tai_men_ci_dian_liang
+              - entity: sensor.geng_yi_shi_men_ci_dian_liang
+              - entity: sensor.gong_zuo_shi_men_ci_dian_liang
+              - entity: sensor.lu_tai_men_ci_dian_liang
+              - entity: sensor.lu_tai_wen_shi_du_ji_dian_liang
+              - entity: sensor.shu_fang_wen_shi_du_ji_dian_liang
+              - entity: binary_sensor.wei_sheng_jian_ti_gan
+                state_color: true
+              - entity: binary_sensor.hou_chu_men_ci
+                state_color: true
+              - entity: binary_sensor.chu_fang_men_ci
+                state_color: true
+              - entity: binary_sensor.men_lang_men_ci
+                state_color: true
+              - entity: binary_sensor.jia_de_man_du_men_ci
+                state_color: true
+              - entity: binary_sensor.can_ting_men_ci
+                state_color: true
+              - entity: binary_sensor.yang_tai_men_ci
+                state_color: true
+              - entity: binary_sensor.geng_yi_shi_men_ci
+                state_color: true
+              - entity: binary_sensor.gong_zuo_shi_men_ci
+                state_color: true
+              - entity: binary_sensor.lu_tai_men_ci
+                state_color: true
+              - entity: light.hou_chu_da_deng
+              - entity: light.ke_ting_da_deng
+              - entity: light.chu_fang_da_deng
+              - entity: light.che_ku_da_deng
+              - entity: light.zuo_deng_long
+              - entity: light.you_deng_long
+              - entity: light.yi_si_tan_bao_da_deng
+              - entity: light.yi_si_tan_bao_bi_deng
+              - entity: light.jia_de_man_du_da_deng
+              - entity: light.jia_de_man_du_bi_deng
+              - entity: light.wei_sheng_jian_da_deng
+              - entity: light.jing_qian_deng
+              - entity: light.xi_shou_tai
+              - entity: light.ji_long_po_da_deng
+              - entity: light.ji_long_po_bi_deng
+              - entity: light.ma_ni_la_da_deng
+              - entity: light.ma_ni_la_bi_deng
+              - entity: light.can_ting_da_deng
+              - entity: light.pen_zai
+              - entity: light.li_gui
+              - entity: light.bing_xiang
+              - entity: light.ba_tai
+              - entity: light.wo_shi_da_deng
+              - entity: light.yang_tai_bi_deng
+              - entity: light.zuo_chuang_tou_deng
+              - entity: light.you_chuang_tou_deng
+              - entity: light.chuang_di_deng
+              - entity: light.yu_shi_da_deng
+              - entity: light.geng_yi_shi_da_deng
+              - entity: light.yi_gui
+              - entity: light.gong_zuo_shi_da_deng
+              - entity: light.gan_zao_xiang
+              - entity: light.lu_tai_bi_deng
+              - entity: light.ge_lou_bi_deng
+              - entity: light.ying_yuan_da_deng
+              - entity: light.ying_yuan_bi_deng
+              - entity: light.gang_tie_xia
+              - entity: light.zuo_huan_rao
+              - entity: light.you_huan_rao
+              - entity: light.mu_bu
+              - entity: light.dian_shi_gui
+              - entity: light.shu_fang_da_deng
+              - entity: light.shu_fang_bi_deng
+              - entity: light.niu_tou
+              - entity: light.shu_jia
+              - entity: light.luo_di_deng
+              - entity: light.shu_zhuo
+              - entity: light.sheng_dan_shu
+            state_filter:
+              - "on"
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - media_player.spotify
+            state_filter:
+              - "paused"
+              - "playing"
+            card:
+              type: media-control
+              entity: media_player.spotify
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - media_player.chu_fang_tou_ping
+            state_filter:
+              - "on"
+              - "idle"
+              - "paused"
+              - "playing"
+            card:
+              type: media-control
+              entity: media_player.chu_fang_tou_ping
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - media_player.can_ting_dian_shi
+            state_filter:
+              - "on"
+              - "idle"
+              - "paused"
+              - "playing"
+            card:
+              type: media-control
+              entity: media_player.can_ting_dian_shi
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - media_player.wo_shi_dian_shi
+            state_filter:
+              - "on"
+              - "idle"
+              - "paused"
+              - "playing"
+            card:
+              type: media-control
+              entity: media_player.wo_shi_dian_shi
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - media_player.ying_yuan_dian_shi
+            state_filter:
+              - "on"
+              - "idle"
+              - "paused"
+              - "playing"
+            card:
+              type: media-control
+              entity: media_player.ying_yuan_dian_shi
+            show_empty: false
+          - type: entity-filter
+            entities:
+              - media_player.shu_fang_tou_ping
+            state_filter:
+              - "on"
+              - "idle"
+              - "paused"
+              - "playing"
+            card:
+              type: media-control
+              entity: media_player.shu_fang_tou_ping
+            show_empty: false
+
+  - icon: mdi:toggle-switch
+    type: panel
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: light.hou_chu_da_deng
+              - entity: light.ke_ting_da_deng
+              - entity: light.chu_fang_da_deng
+              - entity: light.che_ku_da_deng
+              - entity: light.zuo_deng_long
+              - entity: light.you_deng_long
+            title: 一楼
+            show_header_toggle: false
+            state_color: true
+          - type: entities
+            entities:
+              - entity: light.yi_si_tan_bao_da_deng
+              - entity: light.yi_si_tan_bao_bi_deng
+              - entity: light.jia_de_man_du_da_deng
+              - entity: light.jia_de_man_du_bi_deng
+              - entity: light.wei_sheng_jian_da_deng
+              - entity: light.jing_qian_deng
+              - entity: light.xi_shou_tai
+              - entity: switch.re_shui_qi
+              - entity: light.ji_long_po_da_deng
+              - entity: light.ji_long_po_bi_deng
+              - entity: light.ma_ni_la_da_deng
+              - entity: light.ma_ni_la_bi_deng
+            title: 二楼
+            show_header_toggle: false
+            state_color: true
+          - type: entities
+            entities:
+              - entity: light.can_ting_da_deng
+              - entity: light.pen_zai
+              - entity: light.li_gui
+              - entity: light.bing_xiang
+              - entity: light.ba_tai
+              - entity: light.wo_shi_da_deng
+              - entity: light.yang_tai_bi_deng
+              - entity: light.zuo_chuang_tou_deng
+              - entity: light.you_chuang_tou_deng
+              - entity: light.chuang_di_deng
+              - entity: light.yu_shi_da_deng
+              - entity: light.geng_yi_shi_da_deng
+              - entity: light.yi_gui
+              - entity: light.gong_zuo_shi_da_deng
+              - entity: light.gan_zao_xiang
+              - entity: switch.usb
+              - entity: switch.da_yin_ji
+              - entity: switch.3d_da_yin_ji
+              - entity: switch.nas
+              - entity: switch.pc
+            title: 三楼
+            show_header_toggle: false
+            state_color: true
+          - type: entities
+            entities:
+              - entity: light.lu_tai_bi_deng
+              - entity: light.ge_lou_bi_deng
+              - entity: light.ying_yuan_da_deng
+              - entity: light.ying_yuan_bi_deng
+              - entity: light.gang_tie_xia
+              - entity: light.zuo_huan_rao
+              - entity: light.you_huan_rao
+              - entity: light.liu_guang_yi_cai
+              - entity: light.shu_fang_da_deng
+              - entity: light.shu_fang_bi_deng
+              - entity: light.niu_tou
+              - entity: light.shu_jia
+              - entity: light.luo_di_deng
+              - entity: light.shu_zhuo
+              - entity: light.sheng_dan_shu
+            title: 四楼
+            show_header_toggle: false
+            state_color: true
+
+  - icon: mdi:cctv
+    cards:
+      - type: picture-glance
+        entities:
+          - binary_sensor.men_lang_men_ci
+          - binary_sensor.men_lang_ti_gan
+          - light.men_lang
+        image: http://cctv1:8080/?action=stream
+      - type: picture-glance
+        entities: []
+        image: http://cctv2:8080/?action=stream
+      - type: picture-glance
+        entities:
+          - binary_sensor.gong_zuo_shi_men_ci
+          - light.gong_zuo_shi
+        image: http://cctv3:8080/?action=stream
+      - type: picture-glance
+        entities:
+          - light.shu_fang
+        image: http://cctv4:8080/?action=stream
+      - type: picture-glance
+        entities:
+          - light.lu_tai
+        image: http://cctv5:8080/?action=stream
