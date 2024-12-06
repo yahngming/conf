@@ -1,0 +1,3 @@
+MACRO 1 "GPS" Ability_Spy
+/run local g,h=GetTrackingTexture(),"INV_Misc_Flower_02";if strfind(g,h)then CastSpellByName("Find Minerals")else CastSpellByName("Find Herbs")end
+END
