@@ -1,3 +1,3 @@
-# conf master
+# conf
 
 "I know confu" - Neo
