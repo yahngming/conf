@@ -1,0 +1,190 @@
+default_config:
+
+logger:
+  default: error
+
+lovelace:
+  mode: storage
+  dashboards:
+    land-scape:
+      mode: yaml
+      filename: landscape.yaml
+      title: Landscape
+      icon: mdi:crop-landscape
+    por-trait:
+      mode: yaml
+      filename: portrait.yaml
+      title: Portrait
+      icon: mdi:crop-portrait
+
+recorder:
+  purge_keep_days: 6
+  commit_interval: 3600
+  include:
+    entity_globs:
+      - sensor.*wen_du*
+      - sensor.*shi_du*
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api
+    allowed_chat_ids:
+      - !secret telegram_butler
+      - !secret telegram_pyy
+      - !secret telegram_ym
+
+tts:
+  - platform: google_translate
+    language: "zh-tw"
+
+wake_on_lan:
+
+zha:
+  zigpy_config:
+    ota:
+      ikea_provider: true
+
+rest_command:
+  pipup_can_ting_dian_shi:
+    url: http://192.168.1.137:7979/notify
+    content_type: 'application/json'
+    verify_ssl: false
+    method: 'post'
+    timeout: 20
+    payload: >
+      {
+        "duration": {{ duration | default(20) }},
+        "position": {{ position | default(0) }},
+        "title": "{{ title | default('') }}",
+        "titleSize": {{ titleSize | default(16) }},
+        "titleColor": "{{ titleColor | default('#FFFFFF') }}",
+        "message": "{{ message | default('') }}",
+        "messageSize": {{ messageSize | default(12) }},
+        "messageColor": "{{ messageColor | default('#FFFFFF') }}",
+        "backgroundColor": "{{ backgroundColor | default('#000000') }}",
+        "media": { 
+          "web": {
+            "uri": "{{ url }}",
+            "width": {{ width | default(640) }},
+            "height": {{ height | default(360) }}
+          }
+        }
+      }
+  pipup_wo_shi_dian_shi:
+    url: http://192.168.1.138:7979/notify
+    content_type: 'application/json'
+    verify_ssl: false
+    method: 'post'
+    timeout: 20
+    payload: >
+      {
+        "duration": {{ duration | default(20) }},
+        "position": {{ position | default(0) }},
+        "title": "{{ title | default('') }}",
+        "titleSize": {{ titleSize | default(16) }},
+        "titleColor": "{{ titleColor | default('#FFFFFF') }}",
+        "message": "{{ message | default('') }}",
+        "messageSize": {{ messageSize | default(12) }},
+        "messageColor": "{{ messageColor | default('#FFFFFF') }}",
+        "backgroundColor": "{{ backgroundColor | default('#000000') }}",
+        "media": { 
+          "web": {
+            "uri": "{{ url }}",
+            "width": {{ width | default(640) }},
+            "height": {{ height | default(360) }}
+          }
+        }
+      }
+  pipup_ying_yuan_dian_shi:
+    url: http://192.168.1.147:7979/notify
+    content_type: 'application/json'
+    verify_ssl: false
+    method: 'post'
+    timeout: 20
+    payload: >
+      {
+        "duration": {{ duration | default(20) }},
+        "position": {{ position | default(0) }},
+        "title": "{{ title | default('') }}",
+        "titleSize": {{ titleSize | default(16) }},
+        "titleColor": "{{ titleColor | default('#FFFFFF') }}",
+        "message": "{{ message | default('') }}",
+        "messageSize": {{ messageSize | default(12) }},
+        "messageColor": "{{ messageColor | default('#FFFFFF') }}",
+        "backgroundColor": "{{ backgroundColor | default('#000000') }}",
+        "media": { 
+          "web": {
+            "uri": "{{ url }}",
+            "width": {{ width | default(640) }},
+            "height": {{ height | default(360) }}
+          }
+        }
+      }
+
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: memory_use_percent
+      - type: disk_use_percent
+  - platform: command_line
+    name: 系统温度
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: "{{ value | multiply(0.001) | round(1) }}"
+
+shell_command:
+  sol_nas: curl http://NAS:8009/shutdown
+  sol_pc: curl http://PC:8009/shutdown
+
+switch:
+  - platform: wake_on_lan
+    mac: !secret nas_mac
+    name: NAS
+    host: NAS
+    turn_off:
+      service: shell_command.sol_nas
+  - platform: wake_on_lan
+    mac: !secret pc_mac
+    name: PC
+    host: PC
+    turn_off:
+      service: shell_command.sol_pc
+
+template:
+  - binary_sensor:
+      - name: 做饭
+        state: >
+          {{ is_state('media_player.chu_fang_yin_xiang', 'playing')
+             or is_state('media_player.chu_fang_yin_xiang', 'buffering')
+             or is_state('media_player.chu_fang_yin_xiang', 'paused')
+             or is_state('media_player.chu_fang_tou_ping', 'playing')
+             or is_state('media_player.chu_fang_tou_ping', 'buffering')
+             or is_state('media_player.chu_fang_tou_ping', 'paused') }}
+  - binary_sensor:
+      - name: 吃饭
+        state: >
+          {{ is_state('media_player.can_ting_yin_xiang', 'playing')
+             or is_state('media_player.can_ting_yin_xiang', 'buffering')
+             or is_state('media_player.can_ting_yin_xiang', 'paused')
+             or is_state('media_player.can_ting_dian_shi', 'playing')
+             or is_state('media_player.can_ting_dian_shi', 'buffering')
+             or is_state('media_player.can_ting_dian_shi', 'paused')
+             or is_state('media_player.can_ting_tou_ping', 'playing')
+             or is_state('media_player.can_ting_tou_ping', 'buffering')
+             or is_state('media_player.can_ting_tou_ping', 'paused') }}
+  - binary_sensor:
+      - name: 观影
+        state: >
+          {{ is_state('media_player.ying_yuan_dian_shi', 'playing')
+             or is_state('media_player.ying_yuan_dian_shi', 'buffering')
+             or is_state('media_player.ying_yuan_dian_shi', 'paused')
+             or is_state('media_player.ying_yuan_tou_ping', 'playing')
+             or is_state('media_player.ying_yuan_tou_ping', 'buffering')
+             or is_state('media_player.ying_yuan_tou_ping', 'paused') }}
+
+automation: !include automations.yaml
+group: !include groups.yaml
+scene: !include scenes.yaml
+script: !include scripts.yaml
+secret: !include secrets.yaml
