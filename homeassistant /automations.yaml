@@ -1,0 +1,1036 @@
+- id: '1638887294923'
+  alias: 卧室体感灯
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      motion_sensor: binary_sensor.wo_shi_ti_gan
+      target_entity: light.chuang_di_deng
+      blocker_entity: light.wo_shi
+- id: '1639027222147'
+  alias: 工作室门磁灯
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      motion_sensor: binary_sensor.gong_zuo_shi_men_ci
+      target_off_entity: light.gong_zuo_shi
+      target_entity: light.gan_zao_xiang
+- id: '1639923969193'
+  alias: 餐厅开关
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: switch.can_ting
+      entity_2: light.can_ting
+- id: '1640154298322'
+  alias: 床头灯开关
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: switch.chuang_tou_deng
+      entity_2: light.chuang_tou_deng
+- id: '1642148947001'
+  alias: 厨房体感灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      no_motion_wait: 600
+      motion_entity: binary_sensor.chu_fang_ti_gan
+      elevation_check: 15
+      light_target:
+        entity_id: light.chu_fang
+- id: '1642235560683'
+  alias: 门廊体感灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.men_lang_ti_gan
+      no_motion_wait: 0
+      elevation_check: 0
+      light_target:
+        entity_id: light.men_lang
+- id: '1642328406020'
+  alias: 热水器定时
+  description: ''
+  use_blueprint:
+    path: EPMatt/on_off_schedule_state_persistence.yaml
+    input:
+      automation_target:
+        entity_id:
+        - switch.re_shui_qi
+      on_time: '22:00:00'
+      off_time: 08:00:00
+- id: '1642415887563'
+  alias: 伊斯坦堡开关
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: switch.yi_si_tan_bao
+      entity_2: light.yi_si_tan_bao
+- id: '1642415904937'
+  alias: 马尼拉开关
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: switch.ma_ni_la
+      entity_2: light.ma_ni_la
+- id: '1642682705051'
+  alias: 加德满都开关
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: switch.jia_de_man_du
+      entity_2: light.jia_de_man_du
+- id: '1642682739266'
+  alias: 吉隆坡开关
+  description: ''
+  use_blueprint:
+    path: adchevrier/synchronize-the-on-off-state-of-2-entities.yaml
+    input:
+      entity_1: switch.ji_long_po
+      entity_2: light.ji_long_po
+- id: '1642690140052'
+  alias: 更衣室门磁灯
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      motion_sensor: binary_sensor.geng_yi_shi_men_ci
+      target_entity: light.yi_gui
+      target_off_entity: light.geng_yi_shi
+- id: '1642692229909'
+  alias: 厨房门磁灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.chu_fang_men_ci
+      elevation_check: 15
+      light_target:
+        entity_id:
+        - light.chu_fang
+      no_motion_wait: 0
+      no_motion_blocker: binary_sensor.zuo_fan
+      no_motion_blocker_boolean: false
+- id: '1642692626966'
+  alias: 门廊门磁灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.men_lang_men_ci
+      no_motion_wait: 0
+      light_target:
+        entity_id: light.men_lang
+      elevation_check: 5
+      no_motion_blocker: binary_sensor.men_lang_ti_gan
+      no_motion_blocker_boolean: true
+- id: '1642697504753'
+  alias: 餐厅门磁灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.can_ting_men_ci
+      light_target:
+        entity_id: light.bei_guang_deng
+      no_motion_wait: 0
+      elevation_check: 5
+      no_motion_blocker: light.can_ting_da_deng
+      no_motion_blocker_boolean: false
+- id: '1642697827150'
+  alias: 餐厅体感灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      no_motion_wait: 300
+      motion_entity: binary_sensor.can_ting_ti_gan
+      light_target:
+        entity_id:
+        - light.can_ting_da_deng
+        - light.bei_guang_deng
+      elevation_check: 10
+      no_motion_blocker: binary_sensor.chi_fan
+      no_motion_blocker_boolean: false
+- id: '1642747406087'
+  alias: 卫生间体感灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.wei_sheng_jian_ti_gan
+      no_motion_wait: 60
+      automation_blocker: binary_sensor.wei_sheng_jian_men_ci
+      automation_blocker_boolean: true
+      no_motion_blocker: light.wei_sheng_jian_da_deng
+      no_motion_blocker_boolean: false
+      scene_night: scene.wei_sheng_jian_di_liang
+      light_target:
+        entity_id: light.wei_sheng_jian
+      scene_no_motion: scene.wei_sheng_jian_bu_liang
+- id: '1642747691377'
+  alias: 卫生间门磁灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.wei_sheng_jian_men_ci
+      no_motion_wait: 0
+      light_target:
+        entity_id: light.wei_sheng_jian
+      scene_night: scene.wei_sheng_jian_di_liang
+      scene_no_motion: scene.wei_sheng_jian_gao_liang
+- id: '1643371671842'
+  alias: 热水器开关
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /heater
+    context: {}
+  condition: []
+  action:
+  - type: toggle
+    device_id: e2a22593a4dd2ff379ce2382888fca1d
+    entity_id: switch.re_shui_qi
+    domain: switch
+  - service: telegram_bot.send_message
+    data:
+      message: '{% if is_state(''switch.re_shui_qi'', ''off'') %} 热水器关闭。
+
+        {% else %} 热水器打开。
+
+        {% endif %}'
+  mode: single
+- id: '1645542364431'
+  alias: 全关
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /off
+  condition: []
+  action:
+  - scene: scene.quan_guan
+  - service: telegram_bot.send_message
+    data:
+      message: '{% if is_state(''light.quan_wu'', ''off'') %} 全关。
+
+        {% else %} 错误。
+
+        {% endif %}'
+  mode: single
+- id: '1649248258612'
+  alias: 白骰子5
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: c5b11985-1a6a-42f5-920f-33c40347fed3
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "生活大爆炸", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.can_ting_tou_ping
+  mode: single
+- id: '1649250062094'
+  alias: 白骰子6
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 5c0f525f-5413-473f-8a29-926041e1bec1
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "摩登家庭", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.can_ting_tou_ping
+  mode: single
+- id: '1649250210106'
+  alias: 白骰子2
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 7c147d36-4f5b-476e-8ae9-de6669870eb3
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "老友记", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.can_ting_tou_ping
+  mode: single
+- id: '1649250301744'
+  alias: 白骰子1
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 063aedfe-1a85-45c8-9712-2315a9cbc39e
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "欢乐一家亲", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.can_ting_tou_ping
+  mode: single
+- id: '1649250515546'
+  alias: 白骰子3
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 854d597b-9077-4466-86fa-feb21597d420
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "好汉两个半", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.can_ting_tou_ping
+  mode: single
+- id: '1649250618104'
+  alias: 白骰子4
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: f86d3a7d-3ea1-4b3b-aef8-03397b74787a
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "IT狂人", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.can_ting_tou_ping
+  mode: single
+- id: '1649251069727'
+  alias: 黑骰子1
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: ce13cf33-2a67-4f58-a515-644a8740fbea
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "黑客帝国" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649254826051'
+  alias: 黑骰子2
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 008f9768-1a58-4cb1-9432-540a9cc28f74
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "指环王1：护戒使者" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649254833803'
+  alias: 黑骰子3
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: e1a252ea-c8e8-48e3-844c-730a026b5e71
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "疾速追杀2" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649254839242'
+  alias: 黑骰子4
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: f701382f-e616-47e1-ad4f-f29e80c86606
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "碟中谍6：全面瓦解" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649254845515'
+  alias: 黑骰子5
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 2a24171e-cb2d-433a-a665-3ec8d3d74080
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "复仇者联盟4：终局之战" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649254851202'
+  alias: 黑骰子6
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: ab0f6c19-b91b-4f4d-bd5c-fab6c72873a4
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : " 007：无暇赴死" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649262833082'
+  alias: 唱片1
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d1
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id:
+      - media_player.shu_fang_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "-Rp7UPbhErE", "playlist_id":
+        "PLp8YAQVH95dywvZ0Gqh3zn4SRCRFS_U1H" }'
+      media_content_type: cast
+  mode: single
+- id: '1649262959834'
+  alias: 唱片2
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d2
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "wl1JHpRox_8", "playlist_id":
+        "PLp8YAQVH95dzEEdpqZHh4FVBDmfqFNUOB" }'
+      media_content_type: cast
+  mode: single
+- id: '1649262966042'
+  alias: 唱片3
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d3
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "iKUwMUjavP4", "playlist_id":
+        "PLp8YAQVH95dz6XZTX8G7IhrJ6NKPYxRCN" }'
+      media_content_type: cast
+  mode: single
+- id: '1649262966042'
+  alias: 唱片4
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d4
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "-Rp7UPbhErE", "playlist_id":
+        "PLp8YAQVH95dywvZ0Gqh3zn4SRCRFS_U1H" }'
+      media_content_type: cast
+  mode: single
+- id: '1649262989817'
+  alias: 唱片4
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d4
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "sCHoPgrnytE", "playlist_id":
+        "PLp8YAQVH95dxuR6Z4R4PG2dDBp6pJvpQC" }'
+      media_content_type: cast
+  mode: single
+- id: '1649263000313'
+  alias: 唱片5
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d5
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "zhGnuWwpNxI", "playlist_id":
+        "PLp8YAQVH95dzTgNceQajZN2sQ5gVMn-EX" }'
+      media_content_type: cast
+  mode: single
+- id: '1649263009976'
+  alias: 唱片6
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d6
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "KsZ6tROaVOQ", "playlist_id":
+        "PLmU8B4gZ41icKdheg4d2KZBgDR1wSWfbH" }'
+      media_content_type: cast
+  mode: single
+- id: '1649263542712'
+  alias: 唱片7
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d7
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "RsEZmictANA", "playlist_id":
+        "PLmU8B4gZ41ifO00RpWcvv0vx_UEAyfx8U" }'
+      media_content_type: cast
+  mode: single
+- id: '1649263552689'
+  alias: 唱片8
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d8
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "ptSjNWnzpjg", "playlist_id":
+        "OLAK5uy_kymlVnEd_mmMQfc4GJJPTNOW-ipnOhsrY" }'
+      media_content_type: cast
+  mode: single
+- id: '1649263562551'
+  alias: 唱片9
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d9
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "QQsgJJ_CzBc", "playlist_id":
+        "OLAK5uy_mwwCV3ci_DoOhgq27DRqnrVG3QOR_S2hQ" }'
+      media_content_type: cast
+  mode: single
+- id: '1649263572503'
+  alias: 唱片10
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d10
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "kJQP7kiw5Fk", "playlist_id":
+        "PLirAqAtl_h2pRAtj2DgTa3uWIZ3-0LKTA" }'
+      media_content_type: cast
+  mode: single
+- id: '1649338936808'
+  alias: 门铃
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /knock
+  condition: []
+  action:
+  - service: telegram_bot.send_photo
+    data:
+      url: http://cctv1:8080/?action=snapshot
+      caption: 叮 ~ 咚 ~
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  mode: single
+- id: '1649423957225'
+  alias: 后厨门磁灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.hou_chu_men_ci
+      elevation_check: 15
+      no_motion_wait: 0
+      light_target:
+        entity_id: light.hou_chu_da_deng
+- id: '1649480067680'
+  alias: 壁画1
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: e510a644-d7e8-48ba-bb06-5ab0d40f2c40
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "蜘蛛侠：英雄归来" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649480109175'
+  alias: 壁画2
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 5a224e98-abba-455d-b62f-4adfa6efb009
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "复仇者联盟4：终局之战" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649480164155'
+  alias: 壁画3
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 792b87c9-1c58-4216-9522-06d5b9503457
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电影", "title" : "惊奇队长" }'
+      media_content_type: movie
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1649582625962'
+  alias: 电台1
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /s1
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.shu_fang_yin_xiang
+    data:
+      media_content_id: media-source://radio_browser/9617a958-0601-11e8-ae97-52543be04c81
+      media_content_type: audio/mpeg
+  mode: single
+- id: '1649589930546'
+  alias: 电台2
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /s2
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.shu_fang_yin_xiang
+    data:
+      media_content_id: media-source://radio_browser/951b325b-5b78-45ef-bebf-88f9a0f6c250
+      media_content_type: audio/mpeg
+  mode: single
+- id: '1649590005027'
+  alias: 电台3
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /s3
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.shu_fang_yin_xiang
+    data:
+      media_content_id: media-source://radio_browser/84d0ec1f-9fb7-4e8d-9646-b76a4742e2cf
+      media_content_type: audio/mpeg
+  mode: single
+- id: '1649590103879'
+  alias: 电台4
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /s4
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.shu_fang_yin_xiang
+    data:
+      media_content_id: media-source://radio_browser/d1a54d2e-623e-4970-ab11-35f7b56c5ec3
+      media_content_type: audio/mpeg
+  mode: single
+- id: '1649590217437'
+  alias: 电台5
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /s5
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.shu_fang_yin_xiang
+    data:
+      media_content_id: media-source://radio_browser/9712f8c5-2fba-4d5c-a7a9-d094d1adf41b
+      media_content_type: audio/mpeg
+  mode: single
+- id: '1649668642930'
+  alias: 全屋关灯
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      motion_sensor: switch.quan_wu_guan_deng
+      target_entity: scene.quan_wu_guan_deng
+      target_off_entity: light.quan_wu
+- id: '1649668935857'
+  alias: 右床头柜
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 519dee72-9e9c-4ea9-a45b-8654969983b8
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.you_chuang_tou_deng
+  mode: single
+- id: '1649671573578'
+  alias: 壁画4
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 9ad9db4d-2123-4ddf-8360-71198a819d6f
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "火影忍者：疾风传",
+        "shuffle": "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.ying_yuan_tou_ping
+  mode: single
+- id: '1651034240057'
+  alias: 蓝骰子1
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: afa8aa81-63e0-4f10-a237-7c03c9c046a5
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "欢乐一家亲", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+  mode: single
+- id: '1651034424680'
+  alias: 蓝骰子2
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 751bacf5-e98d-448e-b5e2-d53e09ba8a3c
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "老友记", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+  mode: single
+- id: '1651035374821'
+  alias: 蓝骰子3
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 5cf4f370-a200-48ea-a427-f99898cb5efa
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "办公室", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+  mode: single
+- id: '1651035399955'
+  alias: 蓝骰子4
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: b07cb21c-00c7-41ea-8cbc-6dea51cab95b
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "IT狂人", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+  mode: single
+- id: '1651035426947'
+  alias: 蓝骰子5
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: 114b58f4-0ee4-4254-8e8d-44380bf61245
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "摩登家庭", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+  mode: single
+- id: '1651035614776'
+  alias: 蓝骰子6
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: d7e8a92a-8d82-42f2-baee-9d9029dd34e8
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: 'plex://{ "library_name": "电视剧", "show_name" : "金氏便利店", "shuffle":
+        "1" }'
+      media_content_type: episode
+    target:
+      entity_id: media_player.wo_shi_tou_ping
+  mode: single
+- id: '1654429725018'
+  alias: 唱片11
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /d11
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id:
+      - media_player.shu_fang_tou_ping
+    data:
+      media_content_id: '{ "app_name": "youtube", "media_id": "F7Isp-gv4o4", "playlist_id":
+        "PLp8YAQVH95dx8bpkKvyDKb8hSamf0xNcl" }'
+      media_content_type: cast
+  mode: single
+- id: '1661688889604'
+  alias: 门廊监控
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 8bdfebcf2026910901b992b8da7bce1f
+    entity_id: binary_sensor.men_lang_ti_gan
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.can_ting_dian_shi
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+  - service: rest_command.pipup_can_ting_dian_shi
+    data:
+      url: http://cctv1:8080/?action=stream
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.wo_shi_dian_shi
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+  - service: rest_command.pipup_wo_shi_dian_shi
+    data:
+      url: http://cctv1:8080/?action=stream
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.ying_yuan_dian_shi
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+  - service: rest_command.pipup_ying_yuan_dian_shi
+    data:
+      url: http://cctv1:8080/?action=stream
+  - service: androidtv.adb_command
+    data:
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+    target:
+      entity_id: media_player.yi_dong_dian_shi
+  - service: rest_command.pipup_yi_dong_dian_shi
+    data:
+      url: http://cctv1:8080/?action=stream
+  mode: single
+- id: '1662705016539'
+  alias: 观影
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.guan_ying
+      no_motion_wait: 0
+      light_target:
+        entity_id: light.ying_yuan
+      scene_no_motion: scene.guan_ying_jie_shu
+      scene_night: scene.guan_ying_kai_shi
+- id: '1667546146353'
+  alias: 日出
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 0
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.quan_wu_guan_deng
+    metadata: {}
+  mode: single
+- id: '1667638230785'
+  alias: 加德满都门磁灯
+  description: ''
+  use_blueprint:
+    path: freakshock88/motion_illuminance_activated_entity.yaml
+    input:
+      motion_sensor: binary_sensor.jia_de_man_du_men_ci
+      target_entity: light.jia_de_man_du_bi_deng
+      target_off_entity: light.jia_de_man_du
+- id: '1667638652484'
+  alias: 阳台门磁灯
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.yang_tai_men_ci
+      no_motion_wait: 0
+      light_target:
+        device_id: f7eb5804ee3e302d515ce8b9ffdce61d
+      elevation_check: 5
+- id: '1681805060210'
+  alias: 吃饭
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: binary_sensor.chi_fan
+      light_target:
+        entity_id: light.ba_tai
+      no_motion_wait: 0
+      scene_night: scene.chi_fan_kai_shi
+      scene_no_motion: scene.chi_fan_jie_shu
+      elevation_check: 5
