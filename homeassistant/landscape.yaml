@@ -32,35 +32,25 @@ views:
                   - type: button
                     entity: light.chuang_tou_deng
                   - type: button
+                    entity: light.gan_zao_xiang
+                  - type: button
                     entity: light.liu_guang_yi_cai
-                  - type: button
-                    entity: light.sheng_dan_shu
-                  - type: button
-                    entity: automation.re_shui_qi_ding_shi
-                  - type: button
-                    entity: switch.re_shui_qi
-                  - type: button
-                    entity: switch.da_yin_ji
-                  - type: button
-                    entity: switch.3d_da_yin_ji
-                  - type: button
-                    entity: switch.pc
               - type: grid
                 title:  
                 columns: 4
                 square: false
                 cards:
                   - type: sensor
-                    entity: sensor.wo_shi_wen_du
+                    entity: sensor.wei_sheng_jian_wen_du
                     graph: line
                   - type: sensor
-                    entity: sensor.wo_shi_shi_du
+                    entity: sensor.wo_shi_wen_du
                     graph: line
                   - type: sensor
                     entity: sensor.lu_tai_wen_du
                     graph: line
                   - type: sensor
-                    entity: sensor.lu_tai_shi_du
+                    entity: sensor.gong_zuo_shi_shi_du
                     graph: line
 
           - type: vertical-stack
@@ -80,22 +70,6 @@ views:
                     service: light.toggle
                     service_data:
                       entity_id: light.men_lang
-                  hold_action: none
-                  double_tap_action: none
-                show_empty: false
-              - type: entity-filter
-                entities:
-                  - switch.3d_da_yin_ji
-                state_filter:
-                  - "on"
-                card:
-                  type: picture
-                  image: http://cctv3:8080/?action=stream
-                  tap_action:
-                    action: call-service
-                    service: light.toggle
-                    service_data:
-                      entity_id: light.gong_zuo_shi
                   hold_action: none
                   double_tap_action: none
                 show_empty: false
@@ -168,6 +142,7 @@ views:
               - entity: sensor.jia_de_man_du_men_ci_dian_liang
               - entity: sensor.wei_sheng_jian_men_ci_dian_liang
               - entity: sensor.wei_sheng_jian_ti_gan_dian_liang
+              - entity: sensor.wei_sheng_jian_wen_shi_du_ji_dian_liang
               - entity: sensor.can_ting_men_ci_dian_liang
               - entity: sensor.can_ting_ti_gan_dian_liang
               - entity: sensor.wo_shi_ti_gan_dian_liang
@@ -175,6 +150,7 @@ views:
               - entity: sensor.yang_tai_men_ci_dian_liang
               - entity: sensor.geng_yi_shi_men_ci_dian_liang
               - entity: sensor.gong_zuo_shi_men_ci_dian_liang
+              - entity: sensor.gong_zuo_shi_wen_shi_du_ji_dian_liang
               - entity: sensor.lu_tai_men_ci_dian_liang
               - entity: sensor.lu_tai_wen_shi_du_ji_dian_liang
               - entity: sensor.shu_fang_wen_shi_du_ji_dian_liang
@@ -324,6 +300,8 @@ views:
                     entities:
                       - entity: binary_sensor.wei_sheng_jian_men_ci
                       - entity: binary_sensor.wei_sheng_jian_ti_gan
+                      - entity: sensor.wei_sheng_jian_wen_du
+                      - entity: sensor.wei_sheng_jian_shi_du
                   - entity: light.wei_sheng_jian_da_deng
                   - entity: light.jing_qian_deng
                   - entity: light.xi_shou_tai
@@ -375,7 +353,6 @@ views:
                           - entity: light.zuo_chuang_tou_deng
                           - entity: light.you_chuang_tou_deng
                           - entity: light.chuang_di_deng
-                          - entity: switch.pc
                           - entity: media_player.wo_shi_dian_shi
                         state_color: true
                       - type: entities
@@ -396,12 +373,10 @@ views:
                       - type: buttons
                         entities:
                           - entity: binary_sensor.gong_zuo_shi_men_ci
+                          - entity: sensor.gong_zuo_shi_wen_du
+                          - entity: sensor.gong_zuo_shi_shi_du
                       - entity: light.gong_zuo_shi_da_deng
                       - entity: light.gan_zao_xiang
-                      - entity: switch.usb
-                      - entity: switch.da_yin_ji
-                      - entity: switch.3d_da_yin_ji
-                      - entity: switch.nas
                     state_color: true
           - type: vertical-stack
             cards:
@@ -459,18 +434,49 @@ views:
           - binary_sensor.men_lang_ti_gan
           - light.men_lang
         image: http://cctv1:8080/?action=stream
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.men_lang
+        hold_action: none
+        double_tap_action: none
       - type: picture-glance
-        entities: []
+        entities:
+          - binary_sensor.chu_fang_men_ci
+          - binary_sensor.chu_fang_ti_gan
+          - light.chu_fang
         image: http://cctv2:8080/?action=stream
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.chu_fang
+        hold_action: none
+        double_tap_action: none
       - type: picture-glance
         entities:
           - binary_sensor.gong_zuo_shi_men_ci
           - light.gong_zuo_shi
         image: http://cctv3:8080/?action=stream
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.gong_zuo_shi
+        hold_action: none
+        double_tap_action: none
       - type: picture-glance
         entities:
           - light.shu_fang
         image: http://cctv4:8080/?action=stream
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.shu_fang
+        hold_action: none
+        double_tap_action: none
       - type: picture-glance
         entities:
           - light.lu_tai
@@ -521,6 +527,20 @@ views:
           green: 20
           red: 80
       - type: gauge
+        entity: sensor.wei_sheng_jian_wen_du
+        needle: true
+        severity:
+          yellow: 0
+          green: 15
+          red: 25
+      - type: gauge
+        entity: sensor.wei_sheng_jian_shi_du
+        needle: true
+        severity:
+          yellow: 0
+          green: 30
+          red: 60
+      - type: gauge
         entity: sensor.wo_shi_wen_du
         needle: true
         severity:
@@ -529,6 +549,20 @@ views:
           red: 25
       - type: gauge
         entity: sensor.wo_shi_shi_du
+        needle: true
+        severity:
+          yellow: 0
+          green: 30
+          red: 60
+      - type: gauge
+        entity: sensor.gong_zuo_shi_wen_du
+        needle: true
+        severity:
+          yellow: 0
+          green: 15
+          red: 25
+      - type: gauge
+        entity: sensor.gong_zuo_shi_shi_du
         needle: true
         severity:
           yellow: 0
@@ -620,6 +654,12 @@ views:
           yellow: 15
           green: 50
       - type: gauge
+        entity: sensor.wei_sheng_jian_wen_shi_du_ji_dian_liang
+        severity:
+          red: 0
+          yellow: 15
+          green: 50
+      - type: gauge
         entity: sensor.can_ting_men_ci_dian_liang
         severity:
           red: 0
@@ -662,6 +702,12 @@ views:
           yellow: 15
           green: 50
       - type: gauge
+        entity: sensor.gong_zuo_shi_wen_shi_du_ji_dian_liang
+        severity:
+          red: 0
+          yellow: 15
+          green: 50
+      - type: gauge
         entity: sensor.lu_tai_men_ci_dian_liang
         severity:
           red: 0
@@ -694,20 +740,150 @@ views:
         elements:
 
           - type: image
-            entity: light.yeelight_bing_xiang
+            entity: light.lu_tai
             tap_action: none
             hold_action: none
             state_image:
               "on": /local/clickable.png
-              "off": /local/4_diao_deng_off.png
-              unavailable: /local/4_diao_deng_off.png
+              "off": /local/4_lu_tai_off.png
+              unavailable: /local/4_lu_tai_off.png
             style:
               top: 50%
               left: 50%
               width: 100%
 
           - type: image
-            entity: light.bing_xiang
+            entity: light.ge_lou_bi_deng
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_ge_lou_bi_deng_off.png
+              unavailable: /local/4_ge_lou_bi_deng_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.ying_yuan_da_deng
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_ying_yuan_da_deng_off.png
+              unavailable: /local/4_ying_yuan_da_deng_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.ying_yuan_bi_deng
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_ying_yuan_bi_deng_off.png
+              unavailable: /local/4_ying_yuan_bi_deng_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.huan_rao
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_huan_rao_off.png
+              unavailable: /local/4_huan_rao_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.shu_fang_da_deng
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_shu_fang_da_deng_off.png
+              unavailable: /local/4_shu_fang_da_deng_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.shu_fang_bi_deng
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_shu_fang_bi_deng_off.png
+              unavailable: /local/4_shu_fang_bi_deng_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.niu_tou
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_niu_tou_off.png
+              unavailable: /local/4_niu_tou_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.luo_di_deng
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_luo_di_deng_off.png
+              unavailable: /local/4_luo_di_deng_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.shu_zhuo
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_shu_zhuo_off.png
+              unavailable: /local/4_shu_zhuo_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.sheng_dan_shu
+            tap_action: none
+            hold_action: none
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/4_sheng_dan_shu_off.png
+              unavailable: /local/4_sheng_dan_shu_off.png
+            style:
+              top: 50%
+              left: 50%
+              width: 100%
+
+          - type: image
+            entity: light.lu_tai
             tap_action:
               action: toggle
             state_image:
@@ -715,44 +891,203 @@ views:
               "off": /local/clickable.png
               unavailable: /local/unavailable.png
             style:
-              top: 15.5%
-              left: 83.6%
-              border: 5px solid red
+              top: 19.5%
+              left: 86%
+              border: 0px solid red
+
+          - type: image
+            entity: light.ying_yuan_da_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 58%
+              left: 20%
+              border: 0px solid red
+              transform: scale(2,2)
+
+          - type: image
+            entity: light.ying_yuan_bi_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 48%
+              left: 12%
+              border: 0px solid red
+
+          - type: image
+            entity: light.huan_rao
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 41%
+              left: 19%
+              border: 0px solid red
+
+          - type: image
+            entity: light.shu_fang_da_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 36%
+              left: 63%
+              border: 0px solid red
+              transform: scale(2,2)
+
+          - type: image
+            entity: light.shu_fang_bi_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 56.5%
+              left: 39.5%
+              border: 0px solid red
+
+          - type: image
+            entity: light.shu_fang_bi_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 35%
+              left: 45%
+              border: 0px solid red
+
+          - type: image
+            entity: light.shu_fang_bi_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 22%
+              left: 48.5%
+              border: 0px solid red
+
+          - type: image
+            entity: light.shu_fang_bi_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 27%
+              left: 88%
+              border: 0px solid red
+
+          - type: image
+            entity: light.shu_fang_bi_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 98%
+              left: 98%
+              border: 0px solid red
+
+          - type: image
+            entity: light.niu_tou
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 47%
+              left: 88%
+              border: 0px solid red
+
+          - type: image
+            entity: light.luo_di_deng
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 82%
+              left: 39%
+              border: 0px solid red
+
+          - type: image
+            entity: light.shu_zhuo
+            tap_action:
+              action: toggle
+            state_image:
+              "on": /local/clickable.png
+              "off": /local/clickable.png
+              unavailable: /local/unavailable.png
+            style:
+              top: 60%
+              left: 60%
+              border: 0px solid red
+              transform: scale(5,5)
 
           - type: state-icon
             entity: light.si_lou
             tap_action: 
               action: toggle
             style:
-              top: 10%
-              left: 5%
+              top: 5%
+              left: 3%
               border-radius: 50%
               background-color: rgba(0, 0, 0, 1)
-              transform: scale(3,3)
+              transform: scale(2,2)
 
           - type: state-badge
-            entity: sensor.shi_wai_wen_du
+            entity: sensor.lu_tai_wen_du
             style:
-              top: 10%
+              top: 5%
               left: 95%
               color: black
-              transform: scale(1.5,1.5)
+              transform: scale(1.0,1.0)
 
           - type: state-badge
-            entity: sensor.shi_wai_shi_du
+            entity: sensor.lu_tai_shi_du
             style:
-              top: 20%
+              top: 17%
               left: 95%
               color: black
-              transform: scale(1.5,1.5)
+              transform: scale(1.0,1.0)
 
           - type: state-badge
             entity: binary_sensor.wei_sheng_jian_ti_gan
             style:
-              top: 10%
+              top: 5%
               left: 90%
               color: black
-              transform: scale(1.5,1.5)
+              transform: scale(1.0,1.0)
 
           - type: conditional
             conditions:

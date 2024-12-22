@@ -10,10 +10,10 @@ views:
           - type: glance
             entities: 
               - sensor.bing_xiang_wen_du
+              - sensor.wei_sheng_jian_wen_du
               - sensor.wo_shi_wen_du
-              - sensor.wo_shi_shi_du
               - sensor.lu_tai_wen_du
-              - sensor.lu_tai_shi_du
+              - sensor.shu_fang_wen_du
           - type: horizontal-stack
             cards:
               - type: button
@@ -48,27 +48,10 @@ views:
                 entity: light.chuang_tou_deng
                 show_name: false
               - type: button
-                entity: light.sheng_dan_shu
+                entity: light.gan_zao_xiang
                 show_name: false
               - type: button
                 entity: light.liu_guang_yi_cai
-                show_name: false
-          - type: horizontal-stack
-            cards:
-              - type: button
-                entity: automation.re_shui_qi_ding_shi
-                show_name: false
-              - type: button
-                entity: switch.re_shui_qi
-                show_name: false
-              - type: button
-                entity: switch.da_yin_ji
-                show_name: false
-              - type: button
-                entity: switch.3d_da_yin_ji
-                show_name: false
-              - type: button
-                entity: switch.pc
                 show_name: false
           - type: entity-filter
             entities:
@@ -83,22 +66,6 @@ views:
                 service: light.toggle
                 service_data:
                   entity_id: light.men_lang
-              hold_action: none
-              double_tap_action: none
-            show_empty: false
-          - type: entity-filter
-            entities:
-              - switch.3d_da_yin_ji
-            state_filter:
-              - "on"
-            card:
-              type: picture
-              image: http://cctv3:8080/?action=stream
-              tap_action:
-                action: call-service
-                service: light.toggle
-                service_data:
-                  entity_id: light.gong_zuo_shi
               hold_action: none
               double_tap_action: none
             show_empty: false
@@ -290,7 +257,6 @@ views:
               - entity: light.wei_sheng_jian_da_deng
               - entity: light.jing_qian_deng
               - entity: light.xi_shou_tai
-              - entity: switch.re_shui_qi
               - entity: light.ji_long_po_da_deng
               - entity: light.ji_long_po_bi_deng
               - entity: light.ma_ni_la_da_deng
@@ -315,11 +281,6 @@ views:
               - entity: light.yi_gui
               - entity: light.gong_zuo_shi_da_deng
               - entity: light.gan_zao_xiang
-              - entity: switch.usb
-              - entity: switch.da_yin_ji
-              - entity: switch.3d_da_yin_ji
-              - entity: switch.nas
-              - entity: switch.pc
             title: 三楼
             show_header_toggle: false
             state_color: true
@@ -353,8 +314,18 @@ views:
           - light.men_lang
         image: http://cctv1:8080/?action=stream
       - type: picture-glance
-        entities: []
+        entities:
+          - binary_sensor.chu_fang_men_ci
+          - binary_sensor.chu_fang_ti_gan
+          - light.chu_fang
         image: http://cctv2:8080/?action=stream
+        tap_action:
+          action: call-service
+          service: light.toggle
+          service_data:
+            entity_id: light.chu_fang
+        hold_action: none
+        double_tap_action: none
       - type: picture-glance
         entities:
           - binary_sensor.gong_zuo_shi_men_ci

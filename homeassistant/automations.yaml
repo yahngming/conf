@@ -14,8 +14,8 @@
     path: freakshock88/motion_illuminance_activated_entity.yaml
     input:
       motion_sensor: binary_sensor.gong_zuo_shi_men_ci
-      target_off_entity: light.gong_zuo_shi
       target_entity: light.gan_zao_xiang
+      target_off_entity: light.gong_zuo_shi
 - id: '1639923969193'
   alias: 餐厅开关
   description: ''
@@ -38,11 +38,13 @@
   use_blueprint:
     path: networkingcat/yet_another_motion_automation.yaml
     input:
-      no_motion_wait: 600
+      no_motion_wait: 300
       motion_entity: binary_sensor.chu_fang_ti_gan
       elevation_check: 15
       light_target:
         entity_id: light.chu_fang
+      no_motion_blocker: binary_sensor.zuo_fan
+      no_motion_blocker_boolean: false
 - id: '1642235560683'
   alias: 门廊体感灯
   description: ''
@@ -140,12 +142,12 @@
     path: networkingcat/yet_another_motion_automation.yaml
     input:
       motion_entity: binary_sensor.can_ting_men_ci
-      light_target:
-        entity_id: light.bei_guang_deng
       no_motion_wait: 0
       elevation_check: 5
-      no_motion_blocker: light.can_ting_da_deng
       no_motion_blocker_boolean: false
+      no_motion_blocker: binary_sensor.chi_fan
+      light_target:
+        entity_id: light.bei_guang_deng
 - id: '1642697827150'
   alias: 餐厅体感灯
   description: ''
@@ -156,7 +158,6 @@
       motion_entity: binary_sensor.can_ting_ti_gan
       light_target:
         entity_id:
-        - light.can_ting_da_deng
         - light.bei_guang_deng
       elevation_check: 10
       no_motion_blocker: binary_sensor.chi_fan
@@ -169,8 +170,8 @@
     input:
       motion_entity: binary_sensor.wei_sheng_jian_ti_gan
       no_motion_wait: 60
-      automation_blocker: binary_sensor.wei_sheng_jian_men_ci
-      automation_blocker_boolean: true
+      automation_blocker: light.wei_sheng_jian_da_deng
+      automation_blocker_boolean: false
       no_motion_blocker: light.wei_sheng_jian_da_deng
       no_motion_blocker_boolean: false
       scene_night: scene.wei_sheng_jian_di_liang
@@ -1034,3 +1035,54 @@
       scene_night: scene.chi_fan_kai_shi
       scene_no_motion: scene.chi_fan_jie_shu
       elevation_check: 5
+- id: '1712814934662'
+  alias: 3D打印完成
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.octoprint_job_percentage
+    to: '100.0'
+  condition: []
+  action:
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.can_ting_dian_shi
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+  - service: rest_command.pipup_can_ting_dian_shi
+    data:
+      url: http://3dprinter/webcam/?action=stream
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.wo_shi_dian_shi
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+  - service: rest_command.pipup_wo_shi_dian_shi
+    data:
+      url: http://3dprinter/webcam/?action=stream
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.ying_yuan_dian_shi
+      command: ps -ef | grep -v grep | grep pipup || am start nl.rogro82.pipup/.MainActivity
+  - service: rest_command.pipup_ying_yuan_dian_shi
+    data:
+      url: http://3dprinter/webcam/?action=stream
+  - service: telegram_bot.send_photo
+    data:
+      authentication: digest
+      url: http://3dprinter/webcam/?action=snapshot
+      caption: 打印完成~
+      disable_notification: true
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.gong_zuo_shi
+  mode: single
+- id: '1726908737206'
+  alias: 台灯开关
+  description: ''
+  use_blueprint:
+    path: poolcactus/zha-ikea-tradfri-on-off-switch-incl-dimmer.yaml
+    input:
+      remote: 07b5058a39d532dc1ab26111d608cbb2
+      light:
+        entity_id: light.you_chuang_tou_deng
