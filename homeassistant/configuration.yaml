@@ -153,6 +153,9 @@ switch:
 
 template:
   - binary_sensor:
+      - name: 下雨
+        state: >
+          {{ is_state('weather.home', 'rainy') }}
       - name: 做饭
         state: >
           {{ is_state('media_player.chu_fang_yin_xiang', 'playing')
