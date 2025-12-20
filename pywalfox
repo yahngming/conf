@@ -1,0 +1,19 @@
+#Dark
+
+Background       color0
+Background light color16
+Background extra color18
+Text             color8
+Text focus       color7
+Accent primary   color2
+Accent secondary color4
+
+#Light
+
+Background       color16
+Background light color0
+Background extra color19
+Text             color8
+Text focus       color7
+Accent primary   color2
+Accent secondary color4
