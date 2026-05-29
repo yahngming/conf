@@ -18,29 +18,28 @@ set dterm_lpf1_static_hz = 0
 set dterm_lpf2_static_hz = 0
 
 # modes
-aux 0 0 0 1700 2100 0 0
+aux 0 0 0 1900 2100 0 0
 aux 1 1 1 1300 1700 0 0
 aux 2 13 3 1700 2100 0 0
 aux 3 35 1 1700 2100 0 0
 
 # osd
-set vcd_video_system = PAL
-set osd_tim1 = 3
-set osd_altitude_pos = 18680
-set osd_avg_cell_voltage_pos = 2497
-set osd_mah_drawn_pos = 2466
-set osd_flight_dist_pos = 2241
-set osd_gps_sats_pos = 2093
-set osd_gps_speed_pos = 2305
-set osd_home_dir_pos = 2273
-set osd_home_dist_pos = 2273
-set osd_link_quality_pos = 2103
-set osd_rssi_dbm_pos = 2098
-set osd_throttle_pos = 2487
-set osd_tim_1_pos = 2519
-set osd_warnings_pos = 2442
-set osd_warn_bitmask = 8189
-set osd_stat_bitmask = 1700
+set osd_warn_bitmask = 421887
+set osd_link_quality_pos = 14391
+set osd_rssi_dbm_pos = 14424
+set osd_tim_2_pos = 14743
+set osd_throttle_pos = 14745
+set osd_current_pos = 14721
+set osd_mah_drawn_pos = 14721
+set osd_gps_speed_pos = 14369
+set osd_gps_sats_pos = 14457
+set osd_home_dir_pos = 14433
+set osd_home_dist_pos = 14433
+set osd_flight_dist_pos = 14744
+set osd_altitude_pos = 14401
+set osd_warnings_pos = 14729
+set osd_avg_cell_voltage_pos = 14721
+set osd_stat_bitmask = 396316
 
 # vtx
 set vtx_band = 5
