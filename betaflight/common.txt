@@ -19,9 +19,6 @@ set dterm_lpf2_static_hz = 0
 
 # modes
 aux 0 0 0 1900 2100 0 0
-aux 1 1 1 1300 1700 0 0
-aux 2 13 3 1700 2100 0 0
-aux 3 35 1 1700 2100 0 0
 
 # osd
 set osd_warn_bitmask = 421887
